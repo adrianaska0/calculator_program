@@ -5,17 +5,6 @@ import pytest
 from calculator.calculation import Calculation
 from calculator.operations import add, subtract, multiply, divide
 
-@pytest.mark.parametrize("a, b, operation, expected", [
-    (Decimal('10'), Decimal('5'), add, Decimal('15')),
-    (Decimal('11.2'), Decimal('5.1'), add, Decimal('16.3')),
-    (Decimal('10'), Decimal('5'), subtract, Decimal('5')),
-    (Decimal('8.5'), Decimal('5.0'), subtract, Decimal('3.5')),
-    (Decimal('10'), Decimal('7'), multiply, Decimal('70')),
-    (Decimal('10.0'), Decimal('2'), multiply, Decimal('20.0')),
-    (Decimal('10'), Decimal('5'), divide, Decimal('2')),
-    (Decimal('10'), Decimal('0.5'), divide, Decimal('20'))
-])
-
 def test_calculation_operations(a, b, operation, expected):
     """Test operations"""
     c = Calculation(a, b, operation)
