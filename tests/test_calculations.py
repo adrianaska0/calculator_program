@@ -1,4 +1,7 @@
 # pylint: disable=unnecessary-dunder-call, invalid-name
+# pylint: disable=redefined-outer-name
+# pylint: disable=unused-argument
+
 """Calculations Test"""
 
 from decimal import Decimal
@@ -34,7 +37,9 @@ def test_clear_history(setup_calculations):
 def test_get_latest(setup_calculations):
     """Test get latest calculation"""
     latest = Calculations.get_latest()
-    assert latest.a == Decimal('20') and latest.b == Decimal('5'), "Did not get correct latest calculation"
+    assert latest.a == Decimal('20') and latest.b == Decimal('5'), (
+        "Did not get correct latest calculation"
+    )
 
 def test_find_by_operation(setup_calculations):
     """Test find calculation filterd by operation"""
@@ -46,4 +51,6 @@ def test_find_by_operation(setup_calculations):
 def test_get_latest_with_empty_history():
     """Test geting latest calculation with empty history"""
     Calculations.clear_history()
-    assert Calculations.get_latest() is None, "Expected None for latest calculation with empty history"
+    assert Calculations.get_latest() is None, (
+        "Expected None for latest calculation with empty history"
+    )
