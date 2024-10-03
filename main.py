@@ -4,10 +4,10 @@ from decimal import Decimal, InvalidOperation
 
 def calculate_and_log(a, b, op_name):
     op_mappings = {
-        'add' = Calculator.add,
-        'subtract' = Calculator.subtract,
-        'multiply' = Calculator.multiply,
-        'divide' = Calculator.divide
+        'add': Calculator.add,
+        'subtract': Calculator.sub,
+        'multiply': Calculator.mult,
+        'divide': Calculator.div
     }
 
     try:
@@ -25,12 +25,12 @@ def calculate_and_log(a, b, op_name):
         print(f"An error occured: {e}")
 
 def main():
-    if len(sys.arg) != 4:
+    if len(sys.argv) != 4:
         print("Usage: python calculator_main.py <number1> <number2> <operation>")
         sys.exit(1)
 
-        _, a, b, operation = sys.argv
-        calculate_and_log(a, b, operation)
+    _, a, b, operation = sys.argv
+    calculate_and_log(a, b, operation)
 
-        if __name__ == '__main__':
-            main()
+if __name__ == '__main__':
+    main()
