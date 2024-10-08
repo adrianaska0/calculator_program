@@ -1,6 +1,6 @@
 from app.commands import Command
 from calculator import Calculator
 
-class AddCommand(Command):
+class DivideCommand(Command):
     def execute(self, a, b):
-        print(Calculator.add(a, b))
+        print(Calculator.div(a, b))

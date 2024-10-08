@@ -1,5 +1,8 @@
 from app.commands import CommandHandler
 from app.commands.add import AddCommand
+from app.commands.subtract import SubtractCommand
+from app.commands.multiply import MultiplyCommand
+from app.commands.divide import DivideCommand
 from decimal import Decimal, InvalidOperation
 
 class App:
@@ -8,6 +11,9 @@ class App:
 
     def start(self):
         self.command_handler.register_command("add", AddCommand())
+        self.command_handler.register_command("subtract", SubtractCommand())
+        self.command_handler.register_command("multiply", MultiplyCommand())
+        self.command_handler.register_command("divide", DivideCommand())
 
         print("Type 'exit' to exit.")
         while True:
