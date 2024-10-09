@@ -41,7 +41,5 @@ class App:
                 print("Please provide the correct number of arguments. Usage: <operation> <operand> <operand>")
             except InvalidOperation:
                 print(f"Invalid operand input: {operands[0]} or {operands[1]} is not a valid number")
-            except ZeroDivisionError:
-                print("Error: Division by 0")
             except Exception as e:
                 print(f"An error occured: {e}")
