@@ -2,6 +2,7 @@ from app.commands import CommandHandler
 from app.commands.add import AddCommand
 from app.commands.subtract import SubtractCommand
 from app.commands.multiply import MultiplyCommand
+from app.commands.menu import MenuCommand
 from app.commands.divide import DivideCommand
 from decimal import Decimal, InvalidOperation
 
@@ -14,6 +15,7 @@ class App:
         self.command_handler.register_command("subtract", SubtractCommand())
         self.command_handler.register_command("multiply", MultiplyCommand())
         self.command_handler.register_command("divide", DivideCommand())
+        self.command_handler.register_command("menu", MenuCommand(self.command_handler))
 
         print("Type 'exit' to exit.")
         while True:
@@ -23,8 +25,12 @@ class App:
                     break
                 cmd_name = user_input[0]
                 operands = user_input[1:]
-                operands = [Decimal(op) for op in user_input[1:]]
-                self.command_handler.execute_command(cmd_name, *operands)
+
+                if cmd_name == "menu":
+                    self.command_handler.execute_command(cmd_name, None, None)
+                else:
+                    operands = [Decimal(op) for op in user_input[1:]]
+                    self.command_handler.execute_command(cmd_name, *operands)
                 
             except IndexError:
                 print("Usage: <operation> <operand> <operand>")
