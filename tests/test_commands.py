@@ -1,13 +1,15 @@
-import pytest
-from app import App
+# pylint: disable=unused-variable
+"""Test plugins/commands"""
+from unittest.mock import MagicMock
 from decimal import Decimal
+import pytest
 from app.plugins.add import AddCommand
 from app.plugins.subtract import SubtractCommand
 from app.plugins.multiply import MultiplyCommand
 from app.plugins.divide import DivideCommand
 from app.plugins.menu import MenuCommand
 from app.commands import CommandHandler
-from unittest.mock import MagicMock
+
 
 def test_add_command(capfd):
     '''Test add command'''
@@ -49,7 +51,7 @@ def test_menu_command(capfd):
     assert "- add" in out
     assert "- menu" in out
 
-def test_divide_zero_command(capfd):
+def test_divide_zero_command():
     '''Test divide by zero command'''
     command = DivideCommand()
     with pytest.raises(ValueError) as e:
