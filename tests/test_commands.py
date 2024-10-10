@@ -1,11 +1,11 @@
 import pytest
 from app import App
 from decimal import Decimal
-from app.commands.add import AddCommand
-from app.commands.subtract import SubtractCommand
-from app.commands.multiply import MultiplyCommand
-from app.commands.divide import DivideCommand
-from app.commands.menu import MenuCommand
+from app.plugins.add import AddCommand
+from app.plugins.subtract import SubtractCommand
+from app.plugins.multiply import MultiplyCommand
+from app.plugins.divide import DivideCommand
+from app.plugins.menu import MenuCommand
 from app.commands import CommandHandler
 from unittest.mock import MagicMock
 

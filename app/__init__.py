@@ -1,24 +1,27 @@
-from app.commands import CommandHandler
-from app.commands.add import AddCommand
-from app.commands.subtract import SubtractCommand
-from app.commands.multiply import MultiplyCommand
-from app.commands.menu import MenuCommand
-from app.commands.divide import DivideCommand
-from app.commands.exit import ExitCommand
+from app.commands import Command, CommandHandler
 from decimal import Decimal, InvalidOperation
+import pkgutil
+import importlib
 
 class App:
     def __init__(self):
         self.command_handler = CommandHandler()
+    
+    def load_plugins(self):
+        plugins_package = 'app.plugins'
+        for _, plugin_name, is_pkg in pkgutil.iter_modules([plugins_package.replace('.', '/')]):
+            if is_pkg:
+                plugin_module = importlib.import_module(f"{plugins_package}.{plugin_name}")
+                for item_name in dir(plugin_module):
+                    item = getattr(plugin_module, item_name)
+                    try:
+                        if issubclass(item, (Command)):
+                            self.command_handler.register_command(plugin_name, item())
+                    except TypeError:
+                        continue
 
     def start(self):
-        self.command_handler.register_command("add", AddCommand())
-        self.command_handler.register_command("subtract", SubtractCommand())
-        self.command_handler.register_command("multiply", MultiplyCommand())
-        self.command_handler.register_command("divide", DivideCommand())
-        self.command_handler.register_command("exit", ExitCommand())
-        self.command_handler.register_command("menu", MenuCommand(self.command_handler))
-
+        self.load_plugins()
         print("Type 'exit' to exit.")
         while True:
             user_input = (input(">>> ").strip().split())
