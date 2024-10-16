@@ -1,4 +1,4 @@
-# pylint: disable=unnecessary-dunder-call, invalid-name
+# pylint: disable=comparison-with-callable
 """Auto-Generated Data Testing"""
 from decimal import Decimal
 from faker import Faker
