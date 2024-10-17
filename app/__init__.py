@@ -64,10 +64,10 @@ class App:
                     self.command_handler.execute_command(cmd_name, *operands)
                 
             except IndexError:
-                print("Usage: <operation> <operand> <operand>")
+                logging.error("Usage: <operation> <operand> <operand>")
             except TypeError:
-                print("Please provide the correct number of arguments. Usage: <operation> <operand> <operand>")
+                logging.error("Please provide the correct number of arguments. Usage: <operation> <operand> <operand>")
             except InvalidOperation:
-                print(f"Invalid operand input: {operands[0]} or {operands[1]} is not a valid number")
+                logging.error(f"Invalid operand input: {operands[0]} or {operands[1]} is not a valid number")
             except Exception as e:
-                print(f"An error occured: {e}")
+                logging.error(f"An error occured: {e}")
