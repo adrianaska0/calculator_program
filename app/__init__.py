@@ -35,7 +35,7 @@ class App:
 
     def start(self):
         self.load_plugins()
-        print("Type 'exit' to exit.")
+        logging.info("Application started successfully. Type 'exit' to exit")
         while True:
             user_input = (input(">>> ").strip().split())
             try:
